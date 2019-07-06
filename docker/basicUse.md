@@ -17,16 +17,19 @@ CMD /run.sh # 容器启动时执行语句
 
 # 根据dockerfile构建镜像
 docker build -t sms/lamp .
+
+# 将宿主机目录挂载到docker镜像 冒号前为宿主机目录,冒号后为docker内目录
+docker run -p 80:80 -p 3306:3306 --name CC -v /usr/html:/var/www/html tutum/lamp 
 # 运行镜像
 # docker run -d -p 80:80 -p 3306:3306 --name test1 cloud0606/lamp
-docker run -d -p 80:80 --name test1 sms/lamp
+docker run -d -p 80:80 --name test1 CC
 # 删除镜像
 docker rmi <image id>
 # 删除容器
 docker rm <container id>
 
 # 进入docker
-sudo docker exec -it test1 /bin/bash
+sudo docker exec -it CC /bin/bash
 
 # 查看容器日志
 docker logs bc60f788c347
