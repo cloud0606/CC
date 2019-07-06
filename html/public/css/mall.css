@@ -1,0 +1,13 @@
+#userAccount {
+    position: absolute;
+    right:10rem;
+}
+
+.dropdown-menu{
+    min-width: none !important;
+}
+
+.subTitle {
+    margin-top: 3rem ;
+    margin-bottom: 2rem;
+}
