@@ -6,7 +6,7 @@ class Database{
        # $username = getenv('ccuser');
        # $password = getenv('123');
        # $dbname = getenv('CC');
-        $servername = '127.0.0.1';
+        $servername = '192.168.9.3';
         $username = 'ccuser';
         $password = '123';
         $dbname = 'CC';
@@ -16,7 +16,8 @@ class Database{
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_PERSISTENT => true
         );
-        $conn = new PDO("mysql:host=".$servername.";dbname=".$dbname.";charset=".$charset, $username, $password, $options);
+        // $conn = new PDO("mysql:host=".$servername.";dbname=".$dbname.";charset=".$charset, $username, $password, $options);
+        $conn = new PDO("mysql:host=".$servername.";dbname=".$dbname, $username, $password);
         return $conn;
     }
 }

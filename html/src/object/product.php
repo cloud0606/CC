@@ -47,6 +47,23 @@ class Product{
         }
     }
 
+    // 购买商品 将商品库存减1
+    function buyProd() {
+        try {
+            $sql = "select id, name, price, inventory, description from ".$this->table_name;
+        
+            $stmt = $this->conn->prepare($sql);
+        
+            $stmt->execute();
+        
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        
+        } catch(PDOException $e) {
+            throw $e;
+        }
+    }
+
     
 
 
