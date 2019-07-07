@@ -12,21 +12,10 @@ $db = $database->connectDb();
 $order = new Order($db);
 
 // 从get请求提取需要购买的商品的id，并查询价格
-$orderid = $_GET['orderid'];
+$orderid = $_GET['orderId'];
 $content = $order->getOrderInfo($orderid);
-
-foreach($content as $key => $row) {
-    $content[$key]['orderid'] = $row['orderid'];
-    $content[$key]['userid'] = $row['orderid'];
-    $content[$key]['prodid'] = $row['orderid'];
-    $content[$key]['totalPrice'] = $row['orderid'];
-    $content[$key]['createtime'] = $row['orderid'];
-}
-  
 $ret = array(
-      'sum' => $prodSum,
-      'rows' => $content
+      'content' => $content
 );
-
 echo json_encode($ret);
 ?>

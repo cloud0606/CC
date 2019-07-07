@@ -23,10 +23,8 @@ function getProdInfo(){
 
 // 前端显示商品信息
 function updateProdInfo(data){
-    var productDisplay =document.getElementById("productDisplay");
     sum = data['sum'];
-    console.log(sum); 
-
+    //console.log(sum); 
     content = "";
     rowcontent = "";
     $.each(data['rows'], function(index, item){
@@ -41,14 +39,16 @@ function updateProdInfo(data){
             "</div>"+
           "</div>"+
         "</div>";
-        console.log(index,item['id'],item['name'],item['price'],item['inventory'],item['description']);
+        // 每个商品的信息
+        //console.log(index,item['id'],item['name'],item['price'],item['inventory'],item['description']);
         if ((index + 1 ) % 3 == 0) // 每行显示个
         {
             content += "<div class='row'>"+rowcontent+"<div>";
             rowcontent = "";
         }
     });
-    console.log(content);
+    // 拼接的html页面
+    //console.log(content);
     $("#productDisplay").html(content);
 } 
 
@@ -69,13 +69,13 @@ function buy(btn){
     })
     
    ajax.done(function(data) {
-        console.log(data);
-        console.log(data['orderid']);
+        //console.log(data);
         alert("success to buy 订单编号："+data['orderid']);
     });
 
     ajax.fail(function(data){
-        console.log(data);
+        //console.log(data);
         alert("failed to buy ");
     });
 }
+

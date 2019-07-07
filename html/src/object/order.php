@@ -23,8 +23,8 @@ class Order{
             " where orderid=".$orderid;
 	        $stmt = $this->conn->prepare($sql);
             $stmt->execute();
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $result['total'];
+            $result =$stmt->fetch(PDO::FETCH_LAZY); // 查询单条数据
+            return $result;
         } catch(PDOException $e) {
             throw $e;
         }
