@@ -3,7 +3,7 @@ class Order{
  
     // database connection and table name
     private $conn;
-    private $table_name = "Products";
+    private $table_name = "Orders";
  
     // object properties
     public $orderid; // 订单ID
@@ -15,11 +15,12 @@ class Order{
     public function __construct($db){
         $this->conn = $db;
     }
-    // get volume of products
-    function getOrderInfo($userid,$orderid) {
+    // 查询订单信息
+    // TODO SQL注入点
+    function getOrderInfo($orderid) {
         try {
-            $sql = "select id, userid, prodid, createtime from ".$this->table_name .
-            " where userid=".$userid." and orderid=".$orderid;
+            $sql = "select orderid, userid, prodid, totalPrice,createtime from ".$this->table_name.
+            " where orderid=".$orderid;
 	        $stmt = $this->conn->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -29,14 +30,15 @@ class Order{
         }
     }
 
-    // 添加订单信息订单
+    // 下订单
     function placeAnOrder($userid,$prodid,$totalPrice){
         try {
-            $sql = "insert into ".$this->table_name." (userid, prodid,totalPrice) values (".$userid.", ".$prodid.", ".totalPrice.")";
+            $sql = "insert into ".$this->table_name.
+            " (userid, prodid,totalPrice) values (".
+            $userid.", ".$prodid.", ".$totalPrice.")";
 	        $stmt = $this->conn->prepare($sql);
             $stmt->execute();
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $result['total'];
+            return $this->conn->lastInsertId(); // 返回订单ID
         } catch(PDOException $e) {
             throw $e;
         }

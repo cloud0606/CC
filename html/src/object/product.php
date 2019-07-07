@@ -21,7 +21,7 @@ class Product{
     function getProdNumInDd() {
         try {
             $sql = "select count(*) as total from ".$this->table_name;
-	    $stmt = $this->conn->prepare($sql);
+	        $stmt = $this->conn->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             return $result['total'];
@@ -30,7 +30,7 @@ class Product{
         }
     }
     
-    // get detail information about products
+    // 查询所有商品的基本信息
     function getProdInfo() {
         try {
             $sql = "select id, name, price, inventory, description from ".$this->table_name;
@@ -47,8 +47,20 @@ class Product{
         }
     }
 
+    // 查询商品价格
+    function getProdPrice($prodid) {
+        try {
+            $sql = "select price from ".$this->table_name." where id=".$prodid;
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute();
+            $result =$stmt->fetch(PDO::FETCH_LAZY); // 查询单条数据
+            return $result;
+        } catch(PDOException $e) {
+            throw $e;
+        }
+    }
     // 购买商品 将商品库存减1
-    function buyProd() {
+    function buyProd($prodid) {
         try {
             $sql = "select id, name, price, inventory, description from ".$this->table_name;
         

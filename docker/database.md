@@ -25,9 +25,9 @@ inventory int,
 description varchar(200)
 );
 
+# 商品表样例
 insert into Products (name,price,inventory,description)values('flag',1000,2142314,'bug this product to get flag');
 insert into Products (name,price,inventory,description)values('fake flag ',1,33332423,'buy this to ...');
-
 insert into Products (name,price,inventory,description)values('kidding....',1,2142314,'hello');
 
 
@@ -39,18 +39,30 @@ totalPrice int,
 createtime  TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP 
 );
 
+# 定义触发器用于在下订单是更新商品库存和用户余额
+    DELIMITER $$ 
+    DROP TRIGGER IF EXISTS `placeAnOrder`$$ 
+    CREATE 
+        TRIGGER `placeAnOrder` AFTER  INSERT ON  `Orders` 
+        FOR EACH ROW BEGIN 
+    update Products set inventory=inventory - 1 where id= new.prodid;
+	update User set money=money - new.totalPrice where id= new.userid;
+        END$$ 
+    DELIMITER ; 
 
-# 定义触发器用于在下订单是更新商品库存和用户金额
-delimiter $
-create triggter placeAnOrder
-after 
-insert
-on Orders
-for each row
-begin
-update Products set inventory=inventory - 1,num where id= new.id;
-update User set money=money - new,num where id= new id;
-end $
+# 触发器测试用例
+select * from Products;
+select * from User;
+select * from Orders;
+
+insert into User 
+(username,password,phone_number,money)
+values('xh','123',321,10000);
+
+insert into Orders 
+(userid,prodid,totalPrice)
+values(1,3,1000);
+
 ```
 
 ```mysql

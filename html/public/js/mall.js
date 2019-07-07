@@ -1,3 +1,4 @@
+// 获取商品信息
 function getProdInfo(){
    var ajax =  $.ajax({
 		type: 'GET',
@@ -20,6 +21,7 @@ function getProdInfo(){
 
 }
 
+// 前端显示商品信息
 function updateProdInfo(data){
     var productDisplay =document.getElementById("productDisplay");
     sum = data['sum'];
@@ -35,7 +37,7 @@ function updateProdInfo(data){
             "<h5 class='card-title'>"+item['name']+"  ￥"+item['price']+"</h5>"+
             "<p class='card-text'> 库存:"+item['inventory']+"</p>"+
             "<p class='card-text'>"+item['description']+"</p>"+
-            "<a href='' class='btn btn-primary'>购买</a>"+
+            "<button href='' class='btn btn-primary buyBtn' onclick='buy(this)' value='"+item['id']+"'>购买</button>"+
             "</div>"+
           "</div>"+
         "</div>";
@@ -54,3 +56,26 @@ $(document).ready(function() {
     getProdInfo(); // 获取商品信息
     console.log("page is ready");
 });
+
+// 下单购买功能
+function buy(btn){
+    prodid = btn.value;
+    var ajax =  $.ajax({
+		type: 'GET',
+		url: 'src/order/placeAnOrder.php',
+		data: {prodid:prodid},
+		dataType: 'json', 
+		encode: true
+    })
+    
+   ajax.done(function(data) {
+        console.log(data);
+        console.log(data['orderid']);
+        alert("success to buy 订单编号："+data['orderid']);
+    });
+
+    ajax.fail(function(data){
+        console.log(data);
+        alert("failed to buy ");
+    });
+}
