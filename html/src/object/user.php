@@ -23,13 +23,13 @@ class User{
     }
 
     // 用户注册 
-    function register($username,$phone_number,$hashedPassword){
+    function register($username,$phonenumber,$hashedPassword){
         // 用户是否已经被注册
         try {
 	    if($username==null){
             $sql = "insert into ".$this->table_name.
-            " (password,phone_number,money) values ('".
-              $hashedPassword."', '".$phone_number."',0)";
+            " (password,phonenumber,money) values ('".
+              $hashedPassword."', '".$phonenumber."',0)";
 	    }
 	    else{
 	        $sql = "insert into ".$this->table_name.
@@ -52,13 +52,13 @@ class User{
     }
 
     // 查看用户是否已经注册,返回用户密码 
-    function checkRegistered($username,$phone_number){
+    function checkRegistered($username,$phonenumber){
         try {
             $sql = "select password from ".$this->table_name.
-            " where username=:username or phone_number=:phone_number";
+            " where username=:username or phonenumber=:phonenumber";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':username', $username);
-            $stmt->bindParam(':phone_number', $phone_number);
+            $stmt->bindParam(':phonenumber', $phonenumber);
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             return isset($result['password']) ? $result['password'] : '';
@@ -83,13 +83,13 @@ class User{
 
 
     // 查看用户个人信息
-    function getUserInfo($username,$phone_number){
+    function getUserInfo($username,$phonenumber){
         try {
-            $sql = "select id,username,phone_number,money from ".$this->table_name.
-            " where username=:username or phone_number=:phone_number";
+            $sql = "select id,username,phonenumber,money from ".$this->table_name.
+            " where username=:username or phonenumber=:phonenumber";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':username', $username);
-            $stmt->bindParam(':phone_number', $phone_number);
+            $stmt->bindParam(':phonenumber', $phonenumber);
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             return $result;

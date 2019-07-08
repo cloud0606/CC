@@ -13,7 +13,7 @@ create table User(
 id int primary key auto_increment,
 username varchar(20),
 password varchar(100),
-phone_number varchar(20),
+phonenumber varchar(20),
 money int
 );
 
