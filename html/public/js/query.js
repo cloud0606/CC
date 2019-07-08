@@ -13,18 +13,22 @@ function queryOrder(){
    ajax.done(function(data) {
         //console.log(result['totalPrice'],);
         //alert("success to query 订单总价："+result['totalPrice']);
-        var html = document.getElementById("orderInfo").innerHTML;
+       if(data['status']){
+	 var html = document.getElementById("orderInfo").innerHTML;
         var tablecontent = '<tbody>\
           <tr>\
-            <td>'+data['content']['orderid']+'</td>\
-            <td>'+data['content']['userid']+'</td>\
-            <td>'+data['content']['prodid']+'</td>\
-            <td>'+data['content']['totalPrice']+'</td>\
-            <td>'+data['content']['createtime']+'</td>\
+            <td>'+data['data']['orderid']+'</td>\
+            <td>'+data['data']['userid']+'</td>\
+            <td>'+data['data']['prodid']+'</td>\
+            <td>￥'+data['data']['totalPrice']+'</td>\
+            <td>'+data['data']['createtime']+'</td>\
           </tr>\
         </tbody>';
         $("#orderInfo").html(html + tablecontent);
-
+	}
+	else{
+		alert(data['data']);
+	}
         // $('#orderInfo').bootstrapTable({
         //     columns: [{
         //         field: 'orderid',

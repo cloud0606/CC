@@ -16,14 +16,22 @@
           
             <div  id="userAccount">
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto"
+              <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                      <a class="nav-link disabled" href="#" id="username">亲爱的用户：123</a>
+                  </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     我的账户
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="templates/query.html">查询订单</a>
-                  </div>
+                    <a class="dropdown-item disabled" id="userbalance"> 余额 </a>
+		  </div>
+
+                </li>
+                <li class="nav-item" id="logoutBtn">
+                    <a class="nav-link" href="#" onclick="logout()">退出登录</a>
                 </li>
               </ul>
               </div>
@@ -52,7 +60,7 @@
         <div class="subTitle">
         <h3>精选商品 <span class="badge badge-secondary">Hot</span></h3>
         </div>
-        <div id="productDisplay">
+        <div id="productDisplay" sty>
         </div>
     </div>
 </body>

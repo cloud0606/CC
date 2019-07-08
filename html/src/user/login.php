@@ -20,15 +20,15 @@ if($passwordInDB != '')
 {
     // 验证密码哈希值
     if(password_verify($password, $passwordInDB)) {
-	$useraNameOrPhone= isset($username) ? $username:$phone_number; 
-        setcookie('loggedInUser', $useraNameOrPhone);
+	$userNameOrPhone= isset($username) ? $username:$phone_number; 
+        setcookie('loggedInUser', $userNameOrPhone);
         // 读取用户表中其他信息并保存在session中
         $userInfo = $user->getUserInfo($username,$phone_number);
         $_SESSION['id']  = $userInfo['id'];
-        $_SESSION['username']  = $userInfo['username'];
+        $_SESSION['userNameOrPhone']  = $userNameOrPhone;
         $_SESSION['phone_number'] = $userInfo['phone_number'];
         $_SESSION['money'] = $userInfo['money'];
-	header("Location:/mall.html");
+#	header("Location:/mall.html");
         $ret = array(
             'status' => true,
             'data' =>  "登录成功",

@@ -17,10 +17,10 @@ class Order{
     }
     // 查询订单信息
     // TODO SQL注入点
-    function getOrderInfo($orderid) {
+    function getOrderInfo($orderid,$userid) {
         try {
             $sql = "select orderid, userid, prodid, totalPrice,createtime from ".$this->table_name.
-            " where orderid=".$orderid;
+            " where orderid=".$orderid." and userid='".$userid."'";
 	        $stmt = $this->conn->prepare($sql);
             $stmt->execute();
             $result =$stmt->fetch(PDO::FETCH_LAZY); // 查询单条数据

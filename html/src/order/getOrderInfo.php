@@ -1,4 +1,5 @@
 <?php
+session_start(); 
 error_reporting(E_ALL | E_STRICT);
 ini_set("display_errors", "On");
 // include database and object files
@@ -10,12 +11,29 @@ $database = new Database();
 $db = $database->connectDb();
 
 $order = new Order($db);
-
-// 从get请求提取需要购买的商品的id，并查询价格
-$orderid = $_GET['orderId'];
-$content = $order->getOrderInfo($orderid);
-$ret = array(
-      'content' => $content
-);
+if (isset($_SESSION['id'])){
+//    $userid=$_SESSION['id'];
+	// 从get请求提取需要购买的商品的id，并查询价格
+	$orderid = $_GET['orderId'];
+	$content = $order->getOrderInfo($orderid,$_SESSION['id']);
+	if($content){
+		$ret = array(
+		'status' => true,
+      		'data' => $content
+		);
+	}
+	else{
+ 		$ret = array(
+                 'status' => false,
+                 'data' => '您无权查看该订单信息'
+                 );	
+	}	
+}
+else{
+	$ret = array(
+	 'status' => false,
+         'data' => '用户未登录无法查询' 
+    	);
+}
 echo json_encode($ret);
 ?>

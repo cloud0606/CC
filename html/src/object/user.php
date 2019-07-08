@@ -67,8 +67,22 @@ class User{
         }
     }
 
+    // 查看账户余额  
+    function getUserBalanceById($userid){
+        try {
+            $sql = "select money from ".$this->table_name." where id=:id";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':id', $userid);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return isset($result['money']) ? $result['money'] : '';
+        } catch(PDOException $e) {
+            throw $e;
+        }
+    }
 
-    // 查看用户是否已经注册,返回用户密码 
+
+    // 查看用户个人信息
     function getUserInfo($username,$phone_number){
         try {
             $sql = "select id,username,phone_number,money from ".$this->table_name.
