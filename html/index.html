@@ -16,28 +16,31 @@
   </head>
 
   <body>
+    <script src="public/js/login.js"> 
+    </script>
+
     <div class = "text-center">
     <div id="login-box">
         <!-- input -->
-        <form class = "form-login">
-          <h1 class = "h3 mb-3 font-weight-normal">登录</h1>
+        <form id = "userInfo" class = "form-login">
+          <h1 class = "h3 mb-3 font-weight-normal">CC账号</h1>
             <div class="form-group">
               <!-- <label for="exampleInputEmail1">Email address</label> -->
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username">
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username" placeholder="Username">
             </div>
 
             <div class="form-group">
               <!-- <label for="exampleInputPassword1">Password</label> -->
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
             </div>
-            <button type="submit" class="btn btn-lg btn-md btn-primary btn-block">登录</button>
+            <button type="button" onclick = "login()"  class="btn btn-lg btn-md btn-primary btn-block">登录</button>
         </form>
 
         <!-- 底部导航栏 -->
         <div class = "Nav-it">
         <ul class="nav justify-content-center">
             <li class="nav-item">
-              <a class="nav-link active" href="#">手机号登录</a>
+              <a id = "Phone-UN" class="nav-link active" href="#" onclick="update()" >手机号登录</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">注册</a>
