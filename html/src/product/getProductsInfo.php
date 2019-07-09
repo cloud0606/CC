@@ -25,13 +25,19 @@ if($prodSum > 0) {
     $content[$key]['description'] = $row['description'];
     $content[$key]['id'] = $row['id'];
   }
-} else {
-  $content = array();
+  $ret = array(
+      'status' => 'true',
+      'sum' => $prodSum,
+      'rows' => $content
+  );
+}
+else{
+    $ret = array(
+        'status' => 'false',
+        'sum' => $prodSum,
+        'rows' => $content
+    );
 }
 
-$ret = array(
-    'sum' => $prodSum,
-    'rows' => $content
-);
 echo json_encode($ret);
 ?>

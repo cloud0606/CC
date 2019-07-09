@@ -11,13 +11,13 @@ function getProdInfo(){
     // using the done promise callback
    ajax.done(function(data) {
 //        console.log("success to get prodInfo");
-        //console.log(data);
+       // console.log(data);
         //console.log(data['content']);
-        updateProdInfo(data);
+	updateProdInfo(data);
     });
     ajax.fail(function(){
 //	console.log("failed to get prodInfo");
-	alert("failed to get prodInfo");
+	alert("请求失败");
     });
 
 }

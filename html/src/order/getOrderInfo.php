@@ -15,6 +15,14 @@ if (isset($_SESSION['id'])){
 //    $userid=$_SESSION['id'];
 	// 从get请求提取需要购买的商品的id，并查询价格
 	$orderid = $_GET['orderId'];
+        $pattern = '/update|delete|drop|set/i';
+        if(preg_match($pattern,$orderid)){
+            $ret = array(
+                 'status' => false,
+                 'data' => 'no sql injection'
+           	);
+        }
+        else{
 	$content = $order->getOrderInfo($orderid,$_SESSION['id']);
 	if($content){
 		$ret = array(
@@ -25,8 +33,9 @@ if (isset($_SESSION['id'])){
 	else{
  		$ret = array(
                  'status' => false,
-                 'data' => '您无权查看该订单信息'
+                 'data' => '无法查看该订单信息'
                  );	
+	}
 	}	
 }
 else{

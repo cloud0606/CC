@@ -29,15 +29,23 @@ else if($user->checkRegistered('inOrderNotToFilterByName',$phonenumber) != ''){
         // 验证验证码是否过期
         if((strtotime($_SESSION['time'])+60)>time()) { 
             // 读取用户表中其他信息并保存在session中
+	    if($verifycode == $_SESSION['verifyCode']){
             $userInfo = $user->getUserInfo(null,$phonenumber);
             $_SESSION['id']  = $userInfo['id'];
             $_SESSION['userNameOrPhone']  = $phonenumber;
             $_SESSION['phonenumber'] = $userInfo['phonenumber'];
             $_SESSION['money'] = $userInfo['money'];
-            $ret = array(
+		$ret = array(
                 'status' => true,
                 'data' =>  "登录成功",
                 ); 
+	    }
+	    else{
+		$ret = array(
+                 'status' => false,
+                 'data' =>  "验证码不正确",
+                 );	
+	    }
         } 
         else{
             session_destroy();  

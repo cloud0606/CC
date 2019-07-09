@@ -13,7 +13,8 @@ function queryOrder(){
    ajax.done(function(data) {
         //console.log(result['totalPrice'],);
         //alert("success to query 订单总价："+result['totalPrice']);
-       if(data['status']){
+        console.log(data);
+	if(data['status']){
 	 var html = document.getElementById("orderInfo").innerHTML;
         var tablecontent = '<tbody>\
           <tr>\
@@ -52,6 +53,6 @@ function queryOrder(){
 
     ajax.fail(function(data){
         console.log(data);
-        alert("failed to query order info ");
+        alert("请求失败");
     });
 }
