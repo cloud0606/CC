@@ -10,6 +10,9 @@
   padding: 1px;
   border:0px solid #000;
 }
+.form-control {
+display:inline !important;
+}
 
 .form-login {
   width: 100%;

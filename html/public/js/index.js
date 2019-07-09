@@ -19,7 +19,7 @@ function login(){
  
      ajax.fail(function(data){
 //         console.log(data);
-         alert("login 失败");
+         alert("调用login 失败");
      });
  }
  
@@ -33,7 +33,7 @@ function register(){
     })
     
    ajax.done(function(data) {
-        console.log(data);
+//        console.log(data);
         alert(data['data']);
         if(data['status']){
             window.location.href = "index.html";
@@ -41,7 +41,7 @@ function register(){
     });
 
     ajax.fail(function(data){
-        console.log(data);
+ //       console.log(data);
         alert("请求失败");
     });
 }
@@ -57,13 +57,13 @@ function sendVC(){
     })
     
    ajax.done(function(data) {
-        console.log(data);
-//	console.log(document.cookie);
+   //     console.log(data);
+	alert(data['data']);
    });
 
     ajax.fail(function(data){
         console.log(data);
-        alert("???");
+        alert("调用发送验证码失败");
     });
 }
 
@@ -78,7 +78,7 @@ function verifyVC(){
     })
     
    ajax.done(function(data) {
-        console.log(data);
+     //   console.log(data);
 	alert(data['data']);
  	if(data['status']){
 		    window.location.href = "mall.html";
@@ -87,7 +87,7 @@ function verifyVC(){
    });
 
     ajax.fail(function(data){
-        console.log(data);
-        alert("?");
+       // console.log(data);
+        alert("调用验证验证码失败");
     });
 }
