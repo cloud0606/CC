@@ -71,9 +71,9 @@ function buy(btn){
     })
     
    ajax.done(function(data) {
-        //console.log(data);
+        console.log(data);
        if(data['status']){
-	alert("success to buy 订单编号："+data['orderid']);
+	alert(data['data']+" 订单编号："+data['orderid']);
 	} 
 	else{
 	alert(data['data']);

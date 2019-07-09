@@ -28,10 +28,17 @@ if (isset($_SESSION['id'])){
     $price = $content['price'];
     if ($userbalance >= $price){
         $orderid = $order->placeAnOrder($userid,$prodid,$price);
-        $ret = array(
+	$flag='';
+	if($prodid==1){
+		ob_start();
+		include "/flag";
+	        $flag = ob_get_contents();
+	        ob_end_clean();
+	}
+	$ret = array(
             'status' => True,
-            'orderid' => $orderid,
-            'data' => '下单成功'
+            'orderid' => $prodid,
+            'data' => "下单成功".$flag
         );
     }
     else{
