@@ -37,7 +37,7 @@ if (isset($_SESSION['id'])){
 	}
 	$ret = array(
             'status' => True,
-            'orderid' => $prodid,
+            'orderid' => $orderid,
             'data' => "下单成功".$flag
         );
     }
