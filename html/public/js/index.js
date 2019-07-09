@@ -19,7 +19,7 @@ function login(){
  
      ajax.fail(function(data){
 //         console.log(data);
-         alert("请求失败");
+         alert("login 失败");
      });
  }
  
@@ -43,5 +43,51 @@ function register(){
     ajax.fail(function(data){
         console.log(data);
         alert("请求失败");
+    });
+}
+
+// 发送验证码
+function sendVC(){
+    var ajax =  $.ajax({
+        type: 'GET',
+        url: '/src/user/sendVerifyCode.php',
+        data: $('#userInfo').serialize(),
+        dataType: 'json', 
+        encode: true
+    })
+    
+   ajax.done(function(data) {
+        console.log(data);
+//	console.log(document.cookie);
+   });
+
+    ajax.fail(function(data){
+        console.log(data);
+        alert("???");
+    });
+}
+
+// 验证验证码
+function verifyVC(){
+    var ajax =  $.ajax({
+        type: 'GET',
+        url: '/src/user/verifyPhoneVc.php',
+        data: $('#userInfo').serialize(),
+        dataType: 'json', 
+        encode: true
+    })
+    
+   ajax.done(function(data) {
+        console.log(data);
+	alert(data['data']);
+ 	if(data['status']){
+		    window.location.href = "mall.html";
+        }
+//	console.log(document.cookie);
+   });
+
+    ajax.fail(function(data){
+        console.log(data);
+        alert("?");
     });
 }

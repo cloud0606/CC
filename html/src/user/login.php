@@ -20,7 +20,7 @@ if($passwordInDB != '')
 {
     // 验证密码哈希值
     if(password_verify($password, $passwordInDB)) {
-	$userNameOrPhone= isset($username) ? $username:$phonenumber; 
+	 $userNameOrPhone= isset($username) ? $username:$phonenumber; 
         setcookie('loggedInUser', $userNameOrPhone);
         // 读取用户表中其他信息并保存在session中
         $userInfo = $user->getUserInfo($username,$phonenumber);

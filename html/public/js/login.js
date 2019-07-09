@@ -14,6 +14,10 @@ function update()
         var btn = document.getElementById("temp_varifycode_btn");
         var btnp = btn.parentNode;
         btnp.removeChild(btn);
+        
+        // 修改登录按钮绑定事件 loginBtn
+        //document.getElementById("loginBtn").onclick = login();
+        $("#loginBtn").click(login());
 
         document.getElementById("exampleInputEmail1").name = "username";
     }
@@ -33,9 +37,16 @@ function update()
         newBtn.type = "button";
         newBtn.style.display = "inline";
         newBtn.innerHTML = "发送验证码";
+        //newBtn.onclick = sendVC();
+        $(newBtn).click(sendVC());
+
         var oldBtn = document.getElementById("exampleInputPassword1");
         var parentNode = oldBtn.parentNode;
         parentNode.appendChild(newBtn);
+
+        // 修改登录按钮绑定事件 loginBtn
+        //document.getElementById("loginBtn").onclick = verifyVC();
+        $("#loginBtn").click(verifyVC());
 
         document.getElementById("exampleInputEmail1").name = "phone_number";
     }

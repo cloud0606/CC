@@ -18,7 +18,6 @@ $password = isset($_GET['password']) ? $_GET['password'] : null;
 #echo 'hehehe';
 // 生成密码哈希值
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-// 用户是否已经被注册
 if(($username == null and $phonenumber == null)|| $password == null){
    $ret = array(
           'status' => false,
@@ -26,6 +25,7 @@ if(($username == null and $phonenumber == null)|| $password == null){
           );
 
 }
+// 用户是否已经被注册
 elseif($user->checkRegistered($username,$phonenumber) == '')
 {
     if($user->register($username,$phonenumber,$hashedPassword)){
