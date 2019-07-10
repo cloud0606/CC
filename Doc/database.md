@@ -28,7 +28,7 @@ description varchar(200)
 # 商品表样例
 insert into Products (name,price,inventory,description)values('flag',1000,2142314,'bug this product to get flag');
 insert into Products (name,price,inventory,description)values('fake flag ',1,33332423,'buy this to ...');
-insert into Products (name,price,inventory,description)values('kidding....',1,2142314,'hello');
+insert into Products (name,price,inventory,description)values('kidding....',0,2142314,'hello');
 
 
 create table Orders(
@@ -61,7 +61,7 @@ values('xh','123',321,10000);
 
 insert into Orders 
 (userid,prodid,totalPrice)
-values(1,3,1000);
+values(1,2,1000);
 
 ```
 
