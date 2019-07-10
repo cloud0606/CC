@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+    <meta name="description" content="CC online shopping">
+    <meta name="author" content="WzyCC">
+
+    <title>CC online shopping</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="public/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="public/css/login.css" rel="stylesheet">
+    <script src="public/js/jquery.min.js"></script>  
+    <script src="public/js/index.js"></script> 
+    <script src="public/js/login.js"></script> 
+  </head>
+
+  <body>
+    <!-- <script src="public/js/login.js"> </script> -->
+
+    <div class = "text-center">
+    <div id="login-box">
+        <!-- input -->
+        <form id = "userInfo" class = "form-login">
+          <h1 class = "h3 mb-3 font-weight-normal">CC账号</h1>
+            <div class="form-group">
+              <!-- <label for="exampleInputEmail1">Email address</label> -->
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username" placeholder="Username">
+            </div>
+
+            <div class="form-group">
+              <!-- <label for="exampleInputPassword1">Password</label> -->
+              <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
+            </div>
+            <button type="button" id="loginBtn" onclick = "login()"  class="btn btn-lg btn-md btn-primary btn-block">登录</button>
+        </form>
+
+        <!-- 底部导航栏 -->
+        <div class = "Nav-it">
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+              <a id = "Phone-UN" class="nav-link active" href="#" onclick="update()" >手机号登录</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="signup.html">注册</a>
+            </li>
+        </ul>
+        </div>
+
+        <!-- 增加CC商城版权标志 -->
+        <p class="mt-5 mb-3 text-muted">&copy; 2019 CC商城</p>
+
+        <!-- 可用代码 -->
+    <!-- 
+    <div  id='userInput'>
+    <div class="text-center">
+      <form class="form-login">
+        <h1 class="h3 mb-3 font-weight-normal">注册/登录</h1>
+        <label for="inputEmail" class="sr-only">用户名</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
+        <label for="inputPassword" class="sr-only">密码</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <button class="btn btn-lg btn-primary btn-md" type="submit">注册</button>
+        <button class="btn btn-lg btn-primary btn-md" type="submit">登录</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2019 CC商城</p>
+      </form>
+    </div>
+    </div> -->
+    </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+#userAccount {
+    position: absolute;
+    right:15rem;
+}
+
+.dropdown-menu{
+    min-width: none !important;
+}
+
+.subTitle {
+    margin-top: 3rem ;
+    margin-bottom: 2rem;
+}
+
+#productDisplay{
+    margin-bottom: 10rem;
+}

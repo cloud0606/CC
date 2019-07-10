@@ -9,6 +9,14 @@
 
 组员：cloud0606（组长），Wzy-CC
 
+### 镜像编译与启动
+
+```bash
+# 进入到docker文件夹下
+docker-compose up -d --build # 镜像编译 与 后台启动
+docker-compose down # 停止容器并删除
+```
+
 ### 时间结点
 
 7月4日~7月9日（6天）
