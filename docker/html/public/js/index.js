@@ -122,6 +122,7 @@ function checkLogin(){
         alert("密码不能为空!");
         return false;
     }
+    return true;
 }
 
 // 检查用户名/密码/再次输入密码是否为空，检查密码是否一致：
@@ -149,6 +150,7 @@ function checkRegister(){
         alert("两次输入密码不一致!");
         return false;
     }
+    return true;
 }
 
 function checkVC(){
@@ -158,6 +160,7 @@ function checkVC(){
         alert("手机号不能为空!");
         return false;
     }
+    return true;
 }
 
 function checkLoginVC(){
@@ -173,4 +176,5 @@ function checkLoginVC(){
         alert("验证码不能为空!");
         return false;
     }
+    return true;
 }
