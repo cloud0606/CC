@@ -1,5 +1,9 @@
 // 用户登录
 function login(){
+     if (!checkLogin()){
+         return;
+     }
+
      var ajax =  $.ajax({
          type: 'GET',
          url: '/src/user/login.php',
@@ -24,6 +28,10 @@ function login(){
  }
  
 function register(){
+    if (!checkRegister()){
+        return;
+    }
+ 
     var ajax =  $.ajax({
         type: 'GET',
         url: '/src/user/register.php',
@@ -48,6 +56,10 @@ function register(){
 
 // 发送验证码
 function sendVC(){
+    if (!checkVC()){
+        return;
+    }
+
     var ajax =  $.ajax({
         type: 'GET',
         url: '/src/user/sendVerifyCode.php',
@@ -69,6 +81,10 @@ function sendVC(){
 
 // 验证验证码
 function verifyVC(){
+    if (!checkLoginVC()){
+        return;
+    }
+
     var ajax =  $.ajax({
         type: 'GET',
         url: '/src/user/verifyPhoneVc.php',
@@ -90,4 +106,71 @@ function verifyVC(){
        // console.log(data);
         alert("调用验证验证码失败");
     });
+}
+
+// 检查账号/密码是否为空：
+function checkLogin(){
+    var UserName = document.getElementById("exampleInputEmail1").value;
+    var PassWord = document.getElementById("exampleInputPassword1").value;
+
+    if (UserName == ""){
+        alert("用户名不能为空!");
+        return false;
+    }
+
+    if (PassWord == ""){
+        alert("密码不能为空!");
+        return false;
+    }
+}
+
+// 检查用户名/密码/再次输入密码是否为空，检查密码是否一致：
+function checkRegister(){
+    var UserName = document.getElementById("exampleInputEmail1").value;
+    var PassWord = document.getElementById("exampleInputPassword1").value;
+    var PassWord2 = document.getElementById("exampleInputPassword2").value;
+
+    if (UserName == "" ){
+        alert("用户名不能为空!");
+        return false;
+    }
+
+    if (PassWord == ""){
+        alert("密码不能为空!");
+        return false;
+    }
+
+    if (PassWord2 == ""){
+        alert("确认密码不能为空!");
+        return false;
+    }
+
+    if (PassWord != PassWord2){
+        alert("两次输入密码不一致!");
+        return false;
+    }
+}
+
+function checkVC(){
+    var PhoneNum = document.getElementById("exampleInputEmail1").value;
+
+    if (PhoneNum == "" ){
+        alert("手机号不能为空!");
+        return false;
+    }
+}
+
+function checkLoginVC(){
+    var PhoneNum = document.getElementById("exampleInputEmail1").value;
+    var VC = document.getElementById("exampleInputPassword1").value;
+
+    if (PhoneNum == ""){
+        alert("用户名不能为空!");
+        return false;
+    }
+
+    if (VC == ""){
+        alert("验证码不能为空!");
+        return false;
+    }
 }
