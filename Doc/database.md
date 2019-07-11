@@ -74,3 +74,22 @@ flush privileges;
 select host,user,password from user;
 ```
 
+```sql
+# 数据库需要如下信息用于checker验证
+# 需要一个手机号为13300001111的 vip用户
+# 需要一个用户名为testReg的用户
+# 订单id=0的存在
+  
+# 商品表样例
+insert into Products (name,price,inventory,description)values('flag',1000,2142314,'bug this product to get flag');
+insert into Products (name,price,inventory,description)values('fake flag ',1,33332423,'buy this to ...');
+insert into Products (name,price,inventory,description)values('kidding....',0,2142314,'hello');
+
+# 用户
+insert into User (username,password,phonenumber,money) values('TEST_REGISTER','123',null,0);
+insert into User (username,password,phonenumber,money) values('VIP_FIND_MY_PHONE','wzdcd132re',13300001111,1000000000);
+  
+# 订单
+insert into Orders (userid,prodid,totalPrice) values('2','1',1000);
+```
+
