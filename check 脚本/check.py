@@ -203,7 +203,9 @@ class exp:
             print("[-] Get Order Information Failed.")
 
     def checkFlag(self,flag):
+        flag = flag.replace("\n", "").replace("\r", "");
         rs = self.session.get(self.url + '/src/config/checkFlag.php', timeout=10)
+        #print(flag)
         #print(rs.text)
         #print(encrypt_string(flag))
         if (rs.text) == encrypt_string(flag):
@@ -214,9 +216,9 @@ class exp:
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 3:
+    if len(sys.argv) < 3:
         print("Wrong Params")
-        print("example: python %s %s %s" % (sys.argv[0], '192.168.9.3', '80'))
+        print("example: python %s %s %s [%s]" % (sys.argv[0], '192.168.9.3', '80',"flag{}"))
         print("Python 3 is needed")
         exit(0)
     host = sys.argv[1]
@@ -227,11 +229,13 @@ if __name__ == '__main__':
     exp.login()
     exp.logout()
     exp.sendVerifyCode()
-    exp.verifyPhoneVc()
+    #exp.verifyPhoneVc()
     print("API about Order")
     exp.getOrderInfo()
     exp.placeAnOrder()
     print("API about Products")
     exp.getProductsInfo()
-    print("Check Flag")
-    exp.checkFlag("flag{test}")
+    if (len(sys.argv) == 4):
+        flag = sys.argv[3]
+        print("Check Flag")
+        exp.checkFlag(flag)
