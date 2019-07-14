@@ -1,9 +1,9 @@
 
 # 信息安全综合实践
 
-## built it
-
 ### 基本信息
+
+项目名称：CC在线购物网站
 
 小组名：CC
 
@@ -28,32 +28,18 @@ docker-compose down # 停止容器并删除
 
 ### 功能设计
 
-- API设计
+[API设计文档](Doc/API.md)
 
-  登录注册:
-
-  - /signup 用户注册
-  - /loginbypw 用户名密码登录
-  - /loginbyvc 手机验证码登录（验证码为4位数字）
-  - /login 用户登出
-
-   商城相关:
-
-  - /query 查询订单（存在SQL注入）
-
-  - /buy 购买
 ### 漏洞利用链
-  1. /query 存在SQL注入，获取vip用户的手机号
-  2. /loginbyvc 使用vip手机号登录，爆破验证码成功登录vip用户账号
+  1. 查询订单页面存在SQL注入，获取vip用户的手机号
+  2. 使用vip手机号，通过爆破验证码成功登录vip用户账号，使用vip账号购买flag
 
 ### 人员分工
 
 - 基本功能设计：Wzy-CC、cloud0606
 - 漏洞利用链设计：Wzy-CC、cloud0606
-- 代码实现：Wzy-CC，cloud0606
-- exp脚本编写：Wzy-CC
-- checker脚本编写：cloud0606
-
-- docker技术支持：Wzy-CC
-- 演示视频录制：cloud0606 
-- ppt书写：Wzy-CC
+- 前端代码实现：Wzy-CC
+- 后端代码实现：cloud0606
+- exp、check脚本编写：cloud0606
+- docker技术支持：cloud0606
+- 演示视频录制、文档、ppt制作：Wzy-CC

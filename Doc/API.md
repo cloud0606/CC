@@ -158,7 +158,7 @@
 
 - getProductsInfo.php 
 
-  描述 : 通过用户名和密码注册账号
+  描述 : 获取商品信息
 
   ```
   uri: http://localhost/src/product/getProductsInfo.php
