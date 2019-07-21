@@ -41,6 +41,7 @@ else if($user->checkRegistered('inOrderNotToFilterByName',$phonenumber) != ''){
                 ); 
 	    }
 	    else{
+		$_SESSION['time']=time();
 		$ret = array(
                  'status' => false,
                  'data' =>  "验证码不正确",
