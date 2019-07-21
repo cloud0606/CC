@@ -9,6 +9,16 @@
 
 组员：cloud0606（组长），Wzy-CC
 
+### 环境
+
+- 宿主机：ubuntu 18.04
+- docker 18.09
+- docker image:tutum/lamp
+  - php 5.5
+  - mysql 5.5
+  - apache2.4.7
+  - ubuntu 14.04 
+
 ### 镜像编译与启动
 
 ```bash

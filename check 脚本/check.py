@@ -229,7 +229,7 @@ if __name__ == '__main__':
     exp.login()
     exp.logout()
     exp.sendVerifyCode()
-    #exp.verifyPhoneVc()
+    exp.verifyPhoneVc()
     print("API about Order")
     exp.getOrderInfo()
     exp.placeAnOrder()
