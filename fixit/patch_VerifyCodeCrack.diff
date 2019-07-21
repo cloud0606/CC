@@ -1,0 +1,12 @@
+diff --git a/docker/html/src/user/verifyPhoneVc.php b/docker/html/src/user/verifyPhoneVc.php
+index b7dc3f2..b4508cd 100644
+--- a/docker/html/src/user/verifyPhoneVc.php
++++ b/docker/html/src/user/verifyPhoneVc.php
+@@ -41,6 +41,7 @@ else if($user->checkRegistered('inOrderNotToFilterByName',$phonenumber) != ''){
+                 ); 
+ 	    }
+ 	    else{
++		$_SESSION['time']=time();
+ 		$ret = array(
+                  'status' => false,
+                  'data' =>  "验证码不正确",
